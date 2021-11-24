@@ -148,3 +148,54 @@ HTTP 2.0의 경우, Header Table과 Huffman Encoding을 사용하는 HPACK 압�
 <img src="https://github.com/douzoneStudy/Web/blob/main/Images/HTTP/%233.png"/>
 
 
+# Summary
+
+## Http 1.0
+
+- Request마다 새로운 Connection 필요
+
+- 3-way-handshake가 매번 필요했기 때문에 성능적인 이슈 발생
+
+
+
+## Http 1.1
+
+- HTTP 1.0의 커넥션 문제를 해결하기함
+
+ Keep Alive를 통해 해결
+
+- 또한 Pipelining의 도입으로 여러 요청을 순차적으로 보내어 응답시간 감소.
+
+다만, 앞선 요청의 응답이 느려지면 다음 요청의 응답 또한 늦어진다는 단점
+
+(Head-of-Line blocking)
+
+
+
+
+
+## Http 2.0
+
+- 기존의 단점들을 다 커버하기 위해 고안됨 ( 기존 HTTP 표준을 바꾸는게 아닌 확장 )
+
+- 먼저 전송방식이 변경됨( 기존방식은 텍스트 형식이었으나, HTTP 2.0부터는 바이너리로 바뀜)
+
+- 프레임은 바이너리 형식으로 이루어져있으며
+
+스트림안에서 양방향 전송이 가능하다.
+
+- 이때문에 기존의 HTTP 1.1의 Head-of-line blocking 문제가 해결되었다.
+
+- 먼저 오는 쪽의 데이터를 수신 측에서 조립 한다음에 처리하여 보내주기 때문
+
+- 이전에 HTTP 1.1에서의 문제 중 하나가 헤더의 중복이었다. 이부분을
+
+HTTP 2.0에서는 Static/Dynamic Header Table을 활용하여 중복 제거를 하였구요
+
+- 또한 서버푸시 기능도 제공된다.
+
+클라이언트가 리소스 요청하기 전에 먼저 판단해서 보내줌
+
+
+- 마지막으로 HTTP 2.9에서는 리소스간의 전송 우선순위도 설정이 가능하다!
+
