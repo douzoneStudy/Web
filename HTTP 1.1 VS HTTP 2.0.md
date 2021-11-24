@@ -38,7 +38,7 @@ HTTP 1.0은 기본적으로 Connection 당 하나의 요청을 처리할 수 있
 
  
 
-HOL(Head-of-Line) Blocking
+## HOL(Head-of-Line) Blocking
 HOL은 Head of Line의 줄임말로서 앞선 요청에 의해 뒤에 요청이 지연되는 것을 의미합니다.
 
 HTTP Pipelining 을 통해 한 번에 여러 개의 이미지를 요청하는 경우를 생각해봅시다.
@@ -49,7 +49,7 @@ TCP 안에 여러 개의 HTTP 요청이 왔으므로 완료된 응답부터 보�
 
  
 
-무거운 Header
+## 무거운 Header
 클라이언트와 서버 간에 수 많은 http 요청이 발생할 것이고 header의 정보는 대부분 동일합니다.
 
 하지만 HTTP 1.1에서는 이러한 헤더를 중복해서 계속 보낼 뿐 아니라 cookie 정보 역시 매 요청마다 헤더에 포함되어 전송됩니다.
@@ -65,21 +65,27 @@ HTTP 1.1 안에서 위에서 봤던 문제점을 극복하기 위해 노력했�
 
  
 
-Image Spriting
+## Image Spriting
+
+
 여러 이미지 파일들에 대해 각각 요청을 하기 보다 한 번에 요청으로 끝내기를 택했습니다.
 
 여러 이미지를 모아 하나의 큰 이미지를 만든 후, CSS로 해당 이미지의 좌표값을 지정해서 사용합니다.
 
  
 
-Domain Sharding
+## Domain Sharding
+
+
 하나의 Domain에 대해 여러 개의 Connection을 생성하여 병렬로 요청을 보냅니다.
 
 하지만 브라우저 별로 Domain당 Connection 개수의 제한이 존재하므로 근본적인 해결책이 될 수 없습니다.
 
  
 
-CSS, Javascript 최소화
+## CSS, Javascript 최소화
+
+
 전송되는 데이터의 용량을 줄이기 위해 CSS, Javascript 파일을 최소화하여 통신합니다.
 
  
@@ -87,20 +93,26 @@ CSS, Javascript 최소화
  
 
 ## HTTP 2.0의 등장
+
+
 HTTP 2.0은 HTTP를 아예 새롭게 개선하기 보다는 기존 HTTP 1.1을 개선하는 방향에서, 성능 쪽에 초점을 맞춘 프로토콜로서 2015년 2월 표준으로 승인되었습니다.
 
 HTTP 1.1의 여러 문제점으로 구글이 개발한 비표준 개방형 프로토콜 SPDY를 기반하였습니다.
 
  
 
-Multiplexed Streams
+## Multiplexed Streams
+
+
 HTTP 1.1의 HTTP Pipelining 의 개선안으로 하나의 Connection으로 동시에 여러 개의 메세지를 주고 받을 수 있습니다.
 
 또한 응답은 요청 순서에 상관없이 Stream으로 받기 때문에 HOL Blocking 도 발생하지 않습니다.
 
 <img src="https://github.com/douzoneStudy/Web/blob/main/Images/HTTP/%232.png"/>
 
-Stream Prioritization
+## Stream Prioritization
+
+
 응답에 대한 우선순위를 정해 우선순위가 높을수록 응답을 빨리 합니다.
 
 예를 들어 하나의 HTML 문서에 CSS 파일과 여러 IMG 파일이 있다고 가정해봅시다.
@@ -111,7 +123,9 @@ Stream Prioritization
 
  
 
-Server Push
+## Server Push
+
+
 서버가 클라이언트의 요청없이 응답을 보내는 방법입니다.
 
 위와 마찬가지로 하나의 HTML 문서에 CSS 파일과 여러 IMG 파일이 있다고 가정해봅시다.
@@ -122,7 +136,9 @@ Server Push
 
  
 
-Header Compression
+## Header Compression
+
+
 HTTP 1.1의 경우 이전 요청과 중복되는 Header도 똑같이 전송하느라 네트워크 자원을 불필요하게 낭비하였습니다.
 
 HTTP 2.0의 경우, Header Table과 Huffman Encoding을 사용하는 HPACK 압축방식으로 이를 개선하였습니다.
