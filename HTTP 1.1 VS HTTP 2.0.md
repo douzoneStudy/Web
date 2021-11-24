@@ -38,7 +38,7 @@ HTTP 1.0은 기본적으로 Connection 당 하나의 요청을 처리할 수 있
 
  
 
-HOL Blocking
+HOL(Head-of-Line) Blocking
 HOL은 Head of Line의 줄임말로서 앞선 요청에 의해 뒤에 요청이 지연되는 것을 의미합니다.
 
 HTTP Pipelining 을 통해 한 번에 여러 개의 이미지를 요청하는 경우를 생각해봅시다.
