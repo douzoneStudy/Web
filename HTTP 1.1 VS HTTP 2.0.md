@@ -19,6 +19,9 @@ HTTP는 1996년 1.0 버전으로 처음 release 되고 1999년 1.1 버전이 등
 
 ## HTTP 1.1이 어떻길래
 HTTP Pipelining
+
+<img src="https://github.com/douzoneStudy/Web/blob/main/Images/HTTP/%231.png"/>
+
 HTTP 1.0은 기본적으로 Connection 당 하나의 요청을 처리할 수 있습니다.
 
 그렇기 때문에 동시전송은 불가능하고 하나의 요청에 대한 응답이 온 후 다음 요청을 처리하게 됩니다.
@@ -94,5 +97,38 @@ Multiplexed Streams
 HTTP 1.1의 HTTP Pipelining 의 개선안으로 하나의 Connection으로 동시에 여러 개의 메세지를 주고 받을 수 있습니다.
 
 또한 응답은 요청 순서에 상관없이 Stream으로 받기 때문에 HOL Blocking 도 발생하지 않습니다.
+
+<img src="https://github.com/douzoneStudy/Web/blob/main/Images/HTTP/%232.png"/>
+
+Stream Prioritization
+응답에 대한 우선순위를 정해 우선순위가 높을수록 응답을 빨리 합니다.
+
+예를 들어 하나의 HTML 문서에 CSS 파일과 여러 IMG 파일이 있다고 가정해봅시다.
+
+만일 여러 IMG 파일을 응답하느라 CSS 파일의 응답이 느려지면 클라이언트는 렌더링을 하지 못하고 기다리게 됩니다.
+
+따라서 CSS 파일의 우선순위를 올려 렌더링을 진행하며 IMG 파일은 도착하는 대로 띄어준다면 더 효율적입니다.
+
+ 
+
+Server Push
+서버가 클라이언트의 요청없이 응답을 보내는 방법입니다.
+
+위와 마찬가지로 하나의 HTML 문서에 CSS 파일과 여러 IMG 파일이 있다고 가정해봅시다.
+
+기존에는 HTML 문서를 요청한 후 다시 각각의 CSS 파일과 여러 IMG 파일을 위한 요청을 보내야 했습니다.
+
+하지만 Server Push 로 인해서 클라이언트의 요청을 최소화하고 서버가 리소스를 알아서 보내줍니다.
+
+ 
+
+Header Compression
+HTTP 1.1의 경우 이전 요청과 중복되는 Header도 똑같이 전송하느라 네트워크 자원을 불필요하게 낭비하였습니다.
+
+HTTP 2.0의 경우, Header Table과 Huffman Encoding을 사용하는 HPACK 압축방식으로 이를 개선하였습니다.
+
+클라이언트와 서버는 각각 Header Table을 관리하고 이전 요청과 동일한 필드는 table의 index만 보내고, 변경되는 값은 Huffman Encoding 후 보냄으로서 Header의 크기를 경령화 하였습니다.
+
+<img src="https://github.com/douzoneStudy/Web/blob/main/Images/HTTP/%233.png"/>
 
 
