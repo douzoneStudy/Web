@@ -153,7 +153,9 @@ react는 DOM 트리를 level-by-level로 탐색합니다. 너비 우선 탐색�
 <div>
   <Counter />
 </div>
+```
 ⬇︎
+```
 <span>
   <Counter />
 </span>
